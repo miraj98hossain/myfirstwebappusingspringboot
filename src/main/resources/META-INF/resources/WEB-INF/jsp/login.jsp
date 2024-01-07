@@ -15,8 +15,8 @@
                 </div>
                 <form name="signin" class="form" method="post">
                     <div class="input-control">
-                        <label for="name" class="input-label" hidden>Name</label>
-                        <input type="name" name="name" id="name" class="input-field" placeholder="User Name">
+                        <label for="username" class="input-label" hidden>Name</label>
+                        <input type="name" name="username" id="username" class="input-field" placeholder="User Name">
                     </div>
                     <div class="input-control">
                         <label for="password" class="input-label" hidden>Password</label>
