@@ -2,14 +2,16 @@ package com.mirajdev.springboot.myfirstwebappusingspringboot.todo;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Size;
+
 public class Todo {
 
     private int id;
     private String username;
+    @Size(min = 10, message = "Enter atleast 10 characters")
     private String description;
     private LocalDate targetDate;
     private boolean isdone;
-
 
     public Todo(int id, String username, String description, LocalDate targetDate, boolean isdone) {
         this.id = id;
@@ -59,15 +61,15 @@ public class Todo {
         this.isdone = isdone;
     }
 
-        @Override
+    @Override
     public String toString() {
         return "{" +
-            " id='" + getId() + "'" +
-            ", username='" + getUsername() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", targetDate='" + getTargetDate() + "'" +
-            ", isdone='" + isIsdone() + "'" +
-            "}";
+                " id='" + getId() + "'" +
+                ", username='" + getUsername() + "'" +
+                ", description='" + getDescription() + "'" +
+                ", targetDate='" + getTargetDate() + "'" +
+                ", isdone='" + isIsdone() + "'" +
+                "}";
     }
 
 }
