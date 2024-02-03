@@ -23,11 +23,13 @@ public class TodoController {
     // }
     @Autowired
     TodoService todoService;
+    @Autowired
+    TodoRepository todoRepository;
 
     @RequestMapping("listtodos")
     public String listAllTodos(ModelMap model) {
-
-        model.addAttribute("todos", todoService.getAllTodos());
+        String username = (String) model.get("username");
+        model.addAttribute("todos", todoRepository.findByUsername(username));
         return "listTodos";
     }
 
@@ -41,13 +43,14 @@ public class TodoController {
 
     @RequestMapping(value = "delete-todo", method = RequestMethod.GET)
     public String deleteTodo(@RequestParam int id) {
-        todoService.deleteTodoById(id);
+        todoRepository.deleteById(id);
+        // todoService.deleteTodoById(id);
         return "redirect:/listtodos";
     }
 
     @RequestMapping(value = "edit-todo", method = RequestMethod.GET)
     public String showEditTodoPage(@RequestParam int id, ModelMap model) {
-        Todo todo = todoService.findById(id);
+        Todo todo = todoRepository.findById(id).get();
         model.put("todo", todo);
         return "addTodo";
     }
@@ -57,7 +60,10 @@ public class TodoController {
         if (result.hasErrors()) {
             return "addTodo";
         }
-        todoService.updateTodos(todo);
+        String username = (String) model.get("username");
+        todo.setUsername(username);
+        todoRepository.save(todo);
+        // todoService.updateTodos(todo);
         return "redirect:/listtodos";
     }
 
@@ -67,8 +73,10 @@ public class TodoController {
             return "addTodo";
         }
         String username = (String) model.get("username");
-        todoService.addNewTodos(username, todo.getDescription(),
-                LocalDate.now().plusYears(1), false);
+        todo.setUsername(username);
+        todoRepository.save(todo);
+        // todoService.addNewTodos(username, todo.getDescription(),
+        // LocalDate.now().plusYears(1), false);
         return "redirect:/listtodos";
     }
 }

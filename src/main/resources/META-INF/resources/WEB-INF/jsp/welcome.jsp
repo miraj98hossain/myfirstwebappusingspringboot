@@ -79,7 +79,7 @@
     <!-- Navigation bar -->
     <div class="navbar">
         <a class="active" href="#">Home</a>
-        <a href="#">Logout</a>
+        <a href="/logout">Logout</a>
     </div>
 
     <div class="container">

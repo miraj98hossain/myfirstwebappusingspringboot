@@ -174,7 +174,7 @@
             <div class="navbar">
                 <a href="#">Home</a>
                 <a class="active" href="/listtodos">Todos</a>
-                <a href="#">Logout</a>
+                <a href="/logout">Logout</a>
             </div>
             <div class="container">
                 <!-- User Details
